@@ -48,6 +48,7 @@ class Main {
       System.out.println("3. Zakończ");
       System.out.println("4. Wyszukaj studenta po imieniu");
       System.out.println("5. Usuń studenta po imieniu");
+      System.out.println("6. Edytuj wiek studenta po imieniu");
       System.out.println("Wybór: ");
 
       int choice = scanner.nextInt();
@@ -64,7 +65,7 @@ class Main {
           System.out.print("Podaj wiek: ");
           age = Integer.parseInt(scanner.nextLine());
 
-          System.out.printf("podaj date urodzenia w formacie rrr-mm-dd: ");
+          System.out.printf("podaj date urodzenia w formacie dd-mm-rrrr: ");
           dataur = scanner.nextLine();
 
 
@@ -102,14 +103,30 @@ class Main {
           }
           break;
         case 5:
-          System.out.println("Podaj imię studenta do usunięcia: ");
+          System.out.print("Podaj imię studenta do usunięcia: ");
           name = scanner.nextLine();
-          Student studentToRemove = s.findStudentByName(name);
-          if (studentToRemove != null)
-            System.out.println("Usunięto studenta: " + studentToRemove);
+
+          try {
+              s.removeStudentByName(name);
+              System.out.println("Usunięto studenta.");
+          } catch (Exception e) {
+              System.out.println("Błąd usuwania.");
+          }
+          break;
+        case 6:
+          System.out.println("Podaj imię studenta do aktualizacji wieku:");
+          name = scanner.nextLine();
+          Student studentToUpdate = s.findStudentByName(name);
+          if (studentToUpdate != null){
+            System.out.println("Podaj nowy wiek studenta;");
+            age = scanner.nextInt();
+            studentToUpdate = new Student(name, studentToUpdate.GetSurname(), age, studentToUpdate.GetData());
+            System.out.println("Zaktualizowano wiek studenta: " + studentToUpdate);}
+            
           else
             System.out.println("Nie znaleziono studenta o podanym imieniu.");
           break;
+          
 
         default:
           System.out.println("błąd");

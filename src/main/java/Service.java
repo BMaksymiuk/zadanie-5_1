@@ -34,6 +34,7 @@ public class Service {
     reader.close();
     return ret;
   }
+  
 
   public Student findStudentByName(String name) {
     try {
@@ -49,4 +50,22 @@ public class Service {
     return null;
     
   }
-}
+    public void removeStudentByName(String name) throws IOException {
+        var students = getStudents();
+        students.removeIf(s -> s.GetName().equals(name));
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("db.txt"))) {
+            for (Student s : students) {
+                writer.write(s.toString());
+                writer.newLine();
+            }
+        }
+    }
+
+  }
+
+
+
+
+        
+           

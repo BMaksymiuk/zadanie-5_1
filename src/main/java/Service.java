@@ -50,19 +50,14 @@ public class Service {
     return null;
     
   }
-    public void removeStudentByName(String name) throws IOException {
-        var students = getStudents();
-        students.removeIf(s -> s.GetName().equals(name));
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("db.txt"))) {
-            for (Student s : students) {
-                writer.write(s.toString());
-                writer.newLine();
-            }
-        }
-    }
+  public boolean removeStudentByName(String name) throws IOException{
+    ArrayList<Student> students = new ArrayList<Student>(getStudents());
+  }
+    
+  }
 
   }
+}
 
 
 

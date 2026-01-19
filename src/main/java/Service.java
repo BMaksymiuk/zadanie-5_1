@@ -36,6 +36,17 @@ public class Service {
   }
 
   public Student findStudentByName(String name) {
+    try {
+      var students = getStudents();
+      for (Student student : students) {
+        if (student.GetName().equals(name)) {
+          return student;
+        }
+      }
+    } catch (IOException e) {
+      System.out.println("Błąd podczas odczytu pliku.");
+    }
     return null;
+    
   }
 }

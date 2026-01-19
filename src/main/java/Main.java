@@ -47,6 +47,7 @@ class Main {
       System.out.println("2. Wyświetl waszystkich studentów");
       System.out.println("3. Zakończ");
       System.out.println("4. Wyszukaj studenta po imieniu");
+      System.out.println("5. Usuń studenta po imieniu");
       System.out.println("Wybór: ");
 
       int choice = scanner.nextInt();
@@ -99,6 +100,15 @@ class Main {
           } else {
             System.out.println("Nie znaleziono studenta o podanym imieniu.");
           }
+          break;
+        case 5:
+          System.out.println("Podaj imię studenta do usunięcia: ");
+          name = scanner.nextLine();
+          Student studentToRemove = s.findStudentByName(name);
+          if (studentToRemove != null)
+            System.out.println("Usunięto studenta: " + studentToRemove);
+          else
+            System.out.println("Nie znaleziono studenta o podanym imieniu.");
           break;
 
         default:

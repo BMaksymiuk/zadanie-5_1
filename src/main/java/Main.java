@@ -44,7 +44,7 @@ class Main {
 
     while (true) {
       System.out.println("1. Dodaj studenta");
-      System.out.println("2. Wyświetl wszystkich studentów");
+      System.out.println("2. Wyświetl waszystkich studentów");
       System.out.println("3. Zakończ");
       System.out.print("Wybór: ");
 
@@ -62,7 +62,7 @@ class Main {
           System.out.print("Podaj wiek: ");
           age = Integer.parseInt(scanner.nextLine());
 
-          System.out.printf("podaj date urodzenia w formacie dd-mm-rrrr: ");
+          System.out.printf("podaj date urodzenia w formacie rrr-mm-dd: ");
           dataur = scanner.nextLine();
 
 

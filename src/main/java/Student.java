@@ -26,7 +26,9 @@ public class Student {
   public String GetData(){
     return Dataur;
   }
-
+  public void SetAge(int newAge) {
+    this.Age = newAge;
+  }
   @Override
   public String toString() {
     return Name + " " + Surname + " " + Age+" "+Dataur;

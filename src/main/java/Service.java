@@ -28,6 +28,7 @@ public class Service {
       line = reader.readLine();
       if (line == null)
         break;
+      if (line.trim().isEmpty()) continue;
       ret.add(Student.Parse(line));
     }
 
@@ -48,17 +49,47 @@ public class Service {
       System.out.println("Błąd podczas odczytu pliku.");
     }
     return null;
-    
   }
-  public boolean removeStudentByName(String name) throws IOException{
+    
+  public boolean removeStudentByName(String name) throws IOException {
+      ArrayList<Student> students = new ArrayList<Student>(getStudents());
+      boolean wasRemoved = students.removeIf(student -> student.GetName().equals(name));
+
+      if (wasRemoved) {
+        saveAllStudents(students); 
+      }
+      return wasRemoved;
+    }
+  public boolean updateStudentAge(String name, int newAge) throws IOException {
     ArrayList<Student> students = new ArrayList<Student>(getStudents());
+    boolean wasUpdated = false;
+
+    for (Student student : students) {
+      if (student.GetName().trim().equalsIgnoreCase(name.trim())) {
+        student.SetAge(newAge);
+        wasUpdated = true;
+        break; 
+      }
+    }
+    if (wasUpdated) {
+      saveAllStudents(students);
+    }
+    return wasUpdated;
   }
     
-  }
 
-  }
-}
+    private void saveAllStudents(Collection<Student> students) throws IOException {
+      var f = new FileWriter("db.txt", false); 
+      var b = new BufferedWriter(f);
 
+      for (Student student : students) {
+        b.write(student.toString());
+        b.newLine();
+      }
+
+      b.close();
+    }
+  }
 
 
 
